@@ -43,6 +43,8 @@ public class RepartirRoles extends JFrame implements KeyListener{
 	private String loc;
 	private int spy;
 	private int jugador;
+	private int minutos = 0;
+	private int segundos = 0;
 	
 	// Paneles para la 1ª pantalla
 	private JPanel pnlNorth1;
@@ -164,6 +166,14 @@ public class RepartirRoles extends JFrame implements KeyListener{
 			this.removeKeyListener(this);
 			// Mostramos la pantalla con todos los lugares
 			printAllLocScreen();
+			count1Sec();
+			// Pondremos el cronometro, de momento que se muestre por consola
+			for(minutos = 0; minutos < nJugadores; minutos++){
+				for(segundos = 0; segundos < 60; segundos++) {
+					count1Sec();
+					System.out.println(minutos+":"+segundos);
+				}
+			}
 			
 		} else if(pantalla%2 == 1) { // Mostramos la pantalla que puede mirar el master para dar instrucciones
 			//System.out.println("Aquí entraremos cada vez que el nº pantalla a mostrar sea impar");
@@ -245,7 +255,6 @@ public class RepartirRoles extends JFrame implements KeyListener{
 	 * @param void
 	 * @return void
 	 */
-	
 	private void printMasterScreen() {
 		pnlPpal.add(pnlMasterScreen, BorderLayout.CENTER);
 		//pnlPpal.setBackground(Color.GRAY);
@@ -302,7 +311,9 @@ public class RepartirRoles extends JFrame implements KeyListener{
 	/*
 	 * printLocScreen();
 	 * Método que mostrará el Jpanel del lugar al jugador que le toque
-	 */
+	 * @param void 
+	 * @return void
+	 */ 
 	private void printLocScreen() {
 		pnlPpal.add(pnlLocation, BorderLayout.CENTER);
 		pnlLocation.setVisible(true);
@@ -310,14 +321,21 @@ public class RepartirRoles extends JFrame implements KeyListener{
 		pnlPpal.repaint();
 	}
 	
-	/*
-	 * 
+	/* removeJPanel();
+	 * Método que utlizamos para remover los JPanel de otro JPanel para poder mostrar otros JPanel
+	 * @param JPanel JPanel que queremos quitar
+	 * @return void
 	 */
 	private void removeJPanel(JPanel pnlQuitar) {
 		pnlQuitar.setVisible(false);
 		pnlPpal.remove(pnlQuitar);
 	}
 	
+	/* intiAllLocScreen();
+	 * Método que inicializa el JPanel que mostrará todas las localizaciones que tiene cargadas el programa
+	 * @param void
+	 * @return void
+	 */
 	private void initAllLocScreen() {
 		pnlAllLoc = new JPanel();
 		pnlAllLoc.setLayout(new GridLayout(10,4));
@@ -327,10 +345,28 @@ public class RepartirRoles extends JFrame implements KeyListener{
 		}
 	}
 	
+	/* printAllLocScreen();
+	 * Método que utilizaremos para mostrar el JPanel con todas las localizaciones del juego
+	 * @param void
+	 * @return void
+	 */
 	private void printAllLocScreen() {
 		pnlPpal.add(pnlAllLoc, BorderLayout.CENTER);
 		pnlAllLoc.setVisible(true);
 		pnlAllLoc.repaint();
 		pnlPpal.repaint();
+	}
+	
+	/* count1Sec();
+	 * Método que hará contar 1 segundo
+	 * @param void
+	 * @return void
+	 */
+	private void count1Sec() {
+		try {
+			Thread.sleep(1000);
+		}catch(InterruptedException iE) {
+			System.err.println("Se ha parado la cuenta del cronometro");
+		}
 	}
 }
