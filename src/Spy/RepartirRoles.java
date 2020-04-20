@@ -166,7 +166,7 @@ public class RepartirRoles extends JFrame implements KeyListener{
 			this.removeKeyListener(this);
 			// Mostramos la pantalla con todos los lugares
 			printAllLocScreen();
-			count1Sec();
+			pnlPpal.repaint();
 			// Pondremos el cronometro, de momento que se muestre por consola
 			for(minutos = 0; minutos < nJugadores; minutos++){
 				for(segundos = 0; segundos < 60; segundos++) {
