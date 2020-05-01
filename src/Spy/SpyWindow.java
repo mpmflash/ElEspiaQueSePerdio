@@ -71,11 +71,13 @@ public class SpyWindow extends JFrame{
 	 * @return void
 	 */
 	private void iniciarLugares() {
+		lugarList.add("Asamblea regional");
 		lugarList.add("Avión");
 		lugarList.add("Banco");
 		lugarList.add("Barco pirata");
 		lugarList.add("Base militar");
-		lugarList.add("Carnaval");
+		lugarList.add("Boda");
+		lugarList.add("Campo de futbol");
 		lugarList.add("Casino");
 		lugarList.add("Circo");
 		lugarList.add("Colegio");
@@ -83,13 +85,17 @@ public class SpyWindow extends JFrame{
 		lugarList.add("Crucero");
 		lugarList.add("Discoteca");
 		lugarList.add("Embajada");
+		lugarList.add("Funeral");
 		lugarList.add("Estación de servicio");
 		lugarList.add("Estación espacial");
 		lugarList.add("Estudios de cine");
 		lugarList.add("Fiesta de empresa");
 		lugarList.add("Hospital");
 		lugarList.add("Hotel");
+		lugarList.add("Montaña con río");
 		lugarList.add("Parque de atracciones");
+		lugarList.add("Pista de esquí");
+		lugarList.add("Playa");
 		lugarList.add("Playa");
 		lugarList.add("Restaurante");
 		lugarList.add("Spa");

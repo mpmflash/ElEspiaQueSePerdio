@@ -168,12 +168,12 @@ public class RepartirRoles extends JFrame implements KeyListener{
 			printAllLocScreen();
 			pnlPpal.repaint();
 			// Pondremos el cronometro, de momento que se muestre por consola
-			for(minutos = 0; minutos < nJugadores; minutos++){
+			/*for(minutos = 0; minutos < nJugadores; minutos++){
 				for(segundos = 0; segundos < 60; segundos++) {
 					count1Sec();
 					System.out.println(minutos+":"+segundos);
 				}
-			}
+			}*/
 			
 		} else if(pantalla%2 == 1) { // Mostramos la pantalla que puede mirar el master para dar instrucciones
 			//System.out.println("Aquí entraremos cada vez que el nº pantalla a mostrar sea impar");
