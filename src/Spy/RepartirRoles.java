@@ -73,7 +73,7 @@ public class RepartirRoles extends JFrame implements KeyListener{
 		// ** Nuestra ventana:
 		this.setTitle("EL ESPÍA (Juego en marcha)");
 		//this.setDefaultCloseOperation(EXIT_ON_CLOSE); // Cuando cerramos con la X, el programa sigue en ejecución, con esta línea lo paramos
-		this.setSize(440,200); //Tamaño de la ventana
+		this.setSize(550,200); //Tamaño de la ventana
 		this.setLocationRelativeTo(null); // Esto hace que se centre la ventana
 		
 		// Inicializamos los atributos que se nos pasan al crear la clase:
