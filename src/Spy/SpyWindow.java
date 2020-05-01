@@ -22,7 +22,7 @@ public class SpyWindow extends JFrame{
 		// ** Nuestra ventana:
 		this.setTitle("El Espía");
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE); // Cuando cerramos con la X, el programa sigue en ejecución, con esta línea lo paramos
-		this.setSize(280,130); //Tamaño de la ventana
+		this.setSize(240,130); //Tamaño de la ventana
 		this.setLocationRelativeTo(null); // Esto hace que se centre la ventana
 		
 		// Inicializamos la arrayList necesarias, de momento la de los lugares:
