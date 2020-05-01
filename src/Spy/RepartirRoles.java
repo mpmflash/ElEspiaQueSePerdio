@@ -65,7 +65,6 @@ public class RepartirRoles extends JFrame implements KeyListener{
 	
 	// Panel con todos los lugares
 	private JPanel pnlAllLoc;
-	private JPanel pnlCrono;
 	
 	
 	// Constructor de uso
@@ -167,15 +166,14 @@ public class RepartirRoles extends JFrame implements KeyListener{
 			this.removeKeyListener(this);
 			// Mostramos la pantalla con todos los lugares
 			printAllLocScreen();
-			printCronoPanel();
 			pnlPpal.repaint();
 			// Pondremos el cronometro, de momento que se muestre por consola
-			for(minutos = 0; minutos < nJugadores; minutos++){
+			/*for(minutos = 0; minutos < nJugadores; minutos++){
 				for(segundos = 0; segundos < 60; segundos++) {
 					count1Sec();
 					System.out.println(minutos+":"+segundos);
 				}
-			}
+			}*/
 			
 		} else if(pantalla%2 == 1) { // Mostramos la pantalla que puede mirar el master para dar instrucciones
 			//System.out.println("Aquí entraremos cada vez que el nº pantalla a mostrar sea impar");
@@ -189,7 +187,6 @@ public class RepartirRoles extends JFrame implements KeyListener{
 				initSpyScreen();
 				initLocScreen();
 				initAllLocScreen();
-				initCronoPanel();
 			}
 			// If de control para saber si el último panel mostrado fue el de espía
 			if(isLastSpyPnl) {
@@ -358,30 +355,6 @@ public class RepartirRoles extends JFrame implements KeyListener{
 		pnlAllLoc.setVisible(true);
 		pnlAllLoc.repaint();
 		pnlPpal.repaint();
-	}
-	
-	/*
-	 * initCronoPanel();
-	 * Método que inicializará el JPanel donde pondremos el cronometro
-	 * @param void
-	 * @return void
-	 */
-	private void initCronoPanel() {
-		pnlCrono = new JPanel();
-		pnlCrono.setLayout(new GridLayout(1,0));
-		JLabel time = new JLabel("0:0");
-		time.setFont(fNegrita);
-		pnlCrono.add(time);
-	}
-	
-	/*
-	 * printCronoPanel();
-	 * Método que mostrará por pantalla el JPanel Crono
-	 * @param void
-	 * @return void
-	 */
-	private void printCronoPanel() {
-		
 	}
 	
 	/* count1Sec();
