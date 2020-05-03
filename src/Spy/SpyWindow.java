@@ -96,7 +96,6 @@ public class SpyWindow extends JFrame{
 		lugarList.add("Parque de atracciones");
 		lugarList.add("Pista de esquí");
 		lugarList.add("Playa");
-		lugarList.add("Playa");
 		lugarList.add("Restaurante");
 		lugarList.add("Spa");
 		lugarList.add("Submarino");
