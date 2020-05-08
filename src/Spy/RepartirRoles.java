@@ -6,12 +6,15 @@ import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
+import javax.swing.Timer;
 
 import javax.swing.BoxLayout;
 
@@ -66,6 +69,11 @@ public class RepartirRoles extends JFrame implements KeyListener{
 	// Panel con todos los lugares
 	private JPanel pnlAllLoc;
 	private JPanel pnlCrono;
+	private JLabel lTime;
+	private String tiempo;
+	private Timer timing;
+	private int secs = 0;
+	private int mins = 0;
 	
 	
 	// Constructor de uso
@@ -73,7 +81,7 @@ public class RepartirRoles extends JFrame implements KeyListener{
 		// ** Nuestra ventana:
 		this.setTitle("EL ESPÍA (Juego en marcha)");
 		//this.setDefaultCloseOperation(EXIT_ON_CLOSE); // Cuando cerramos con la X, el programa sigue en ejecución, con esta línea lo paramos
-		this.setSize(550,200); //Tamaño de la ventana
+		this.setSize(550,300); //Tamaño de la ventana
 		this.setLocationRelativeTo(null); // Esto hace que se centre la ventana
 		
 		// Inicializamos los atributos que se nos pasan al crear la clase:
@@ -169,13 +177,8 @@ public class RepartirRoles extends JFrame implements KeyListener{
 			printAllLocScreen();
 			printCronoPanel();
 			pnlPpal.repaint();
-			// Pondremos el cronometro, de momento que se muestre por consola
-			/*for(minutos = 0; minutos < nJugadores; minutos++){
-				for(segundos = 0; segundos < 60; segundos++) {
-					count1Sec();
-					System.out.println(minutos+":"+segundos);
-				}
-			}*/
+			timing.start();
+			//System.out.println("Paso por el timing start");
 			
 		} else if(pantalla%2 == 1) { // Mostramos la pantalla que puede mirar el master para dar instrucciones
 			//System.out.println("Aquí entraremos cada vez que el nº pantalla a mostrar sea impar");
@@ -360,6 +363,26 @@ public class RepartirRoles extends JFrame implements KeyListener{
 		pnlPpal.repaint();
 	}
 	
+	private ActionListener cambio = new ActionListener(){
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			secs++;
+			if(secs == 60) {
+				secs = 0;
+				mins++;
+			}
+			if(mins == 60) {
+				mins = 0;
+			}
+			reprintCronoPanel();
+			//System.out.println(mins+":"+secs);
+			if(mins == nJugadores) {
+				timing.stop();
+			}
+		}
+	};
+	
 	/*
 	 * initCronoPanel();
 	 * Método que inicializará el JPanel donde pondremos el cronometro
@@ -368,10 +391,13 @@ public class RepartirRoles extends JFrame implements KeyListener{
 	 */
 	private void initCronoPanel() {
 		pnlCrono = new JPanel();
-		pnlCrono.setLayout(new GridLayout(1,0));
-		JLabel time = new JLabel("0:0");
-		time.setFont(fNegrita);
-		pnlCrono.add(time);
+		pnlCrono.setLayout(new GridLayout(2,0));
+		//pnlCrono.setBackground(Color.BLACK);
+		timing = new Timer(1000, cambio);
+		tiempo = "0:0";
+		lTime = new JLabel(tiempo);
+		lTime.setFont(fNegrita);
+		pnlCrono.add(lTime);
 	}
 	
 	/*
@@ -381,7 +407,22 @@ public class RepartirRoles extends JFrame implements KeyListener{
 	 * @return void
 	 */
 	private void printCronoPanel() {
-		
+		pnlPpal.add(pnlCrono, BorderLayout.SOUTH);
+		pnlCrono.setVisible(true);
+		pnlCrono.repaint();
+		pnlPpal.repaint();
+	}
+	
+	/*
+	 * reprintCronoPanel();
+	 * Método que actualizará el JLabel que lleva el crono en el JPanel del cronometro
+	 * @param void
+	 * @return void
+	 */
+	private void reprintCronoPanel() {
+		tiempo = mins+":"+secs;
+		lTime.setText(tiempo);
+		pnlCrono.repaint();
 	}
 	
 	/* count1Sec();
@@ -389,11 +430,11 @@ public class RepartirRoles extends JFrame implements KeyListener{
 	 * @param void
 	 * @return void
 	 */
-	private void count1Sec() {
+	/*private void count1Sec() {
 		try {
 			Thread.sleep(1000);
 		}catch(InterruptedException iE) {
 			System.err.println("Se ha parado la cuenta del cronometro");
 		}
-	}
+	}*/
 }
