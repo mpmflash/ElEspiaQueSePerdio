@@ -74,7 +74,8 @@ public class RepartirRoles extends JFrame implements KeyListener{
 	private Timer timing;
 	private int secs = 0;
 	private int mins = 0;
-	private String startJugador = "Jugador X";
+	private JLabel lStartJugador;
+	private int startJugador = 0;
 	
 	
 	// Constructor de uso
@@ -92,6 +93,7 @@ public class RepartirRoles extends JFrame implements KeyListener{
 		jugador = 1;
 		lugares = new ArrayList<String>();
 		lugares = lugarList;
+		startJugador = startPlayer;
 		
 		// Objetos de la ventana:
 		// Panel en la parte superior:
@@ -397,7 +399,10 @@ public class RepartirRoles extends JFrame implements KeyListener{
 		timing = new Timer(1000, cambio);
 		tiempo = "0:0";
 		lTime = new JLabel(tiempo);
+		lStartJugador = new JLabel("Comienza el jugador "+startJugador);
+		lStartJugador.setFont(fNegrita);
 		lTime.setFont(fNegrita);
+		pnlCrono.add(lStartJugador);
 		pnlCrono.add(lTime);
 	}
 	
