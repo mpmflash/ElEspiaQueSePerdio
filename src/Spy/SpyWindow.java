@@ -16,7 +16,9 @@ public class SpyWindow extends JFrame{
 	private JTextField jTFNumPersonas;
 	private ArrayList<String> lugarList;
 	//private ArrayList<String> numPersonas;
-	public String lugar;
+	private String lugar;
+	private int spyPlayer = 0;
+	private int startPlayer = 0;
 	
 	public SpyWindow() {
 		// ** Nuestra ventana:
@@ -55,9 +57,12 @@ public class SpyWindow extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				lugar = repartirLugar();
 				System.out.println(lugar);
-				int spyPlayer = 0;
+				// Repartimos el rol de espía
 				spyPlayer = numAleatorio(Integer.parseInt(jTFNumPersonas.getText()));
-				RepartirRoles rr = new RepartirRoles(Integer.parseInt(jTFNumPersonas.getText()), lugar, spyPlayer, lugarList);
+				// Repartimos el jugador que empezará a jugar
+				startPlayer = numAleatorio(Integer.parseInt(jTFNumPersonas.getText()));
+				
+				RepartirRoles rr = new RepartirRoles(Integer.parseInt(jTFNumPersonas.getText()), lugar, spyPlayer, lugarList, startPlayer);
 				rr.setVisible(true);
 			}
 		});

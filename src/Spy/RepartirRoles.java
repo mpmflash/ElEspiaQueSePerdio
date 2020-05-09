@@ -74,14 +74,15 @@ public class RepartirRoles extends JFrame implements KeyListener{
 	private Timer timing;
 	private int secs = 0;
 	private int mins = 0;
+	private String startJugador = "Jugador X";
 	
 	
 	// Constructor de uso
-	public RepartirRoles(int numJugadores, String lugar, int espia, ArrayList<String> lugarList) {
+	public RepartirRoles(int numJugadores, String lugar, int espia, ArrayList<String> lugarList, int startPlayer) {
 		// ** Nuestra ventana:
 		this.setTitle("EL ESPÍA (Juego en marcha)");
 		//this.setDefaultCloseOperation(EXIT_ON_CLOSE); // Cuando cerramos con la X, el programa sigue en ejecución, con esta línea lo paramos
-		this.setSize(550,300); //Tamaño de la ventana
+		this.setSize(550,275); //Tamaño de la ventana
 		this.setLocationRelativeTo(null); // Esto hace que se centre la ventana
 		
 		// Inicializamos los atributos que se nos pasan al crear la clase:
@@ -424,17 +425,4 @@ public class RepartirRoles extends JFrame implements KeyListener{
 		lTime.setText(tiempo);
 		pnlCrono.repaint();
 	}
-	
-	/* count1Sec();
-	 * Método que hará contar 1 segundo
-	 * @param void
-	 * @return void
-	 */
-	/*private void count1Sec() {
-		try {
-			Thread.sleep(1000);
-		}catch(InterruptedException iE) {
-			System.err.println("Se ha parado la cuenta del cronometro");
-		}
-	}*/
 }
