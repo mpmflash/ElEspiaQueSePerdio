@@ -378,6 +378,9 @@ public class RepartirRoles extends JFrame implements KeyListener{
 			if(mins == 60) {
 				mins = 0;
 			}
+			if(mins == nJugadores-1) {
+				// Ponerle color rojo al JLabel
+			}
 			reprintCronoPanel();
 			//System.out.println(mins+":"+secs);
 			if(mins == nJugadores) {
