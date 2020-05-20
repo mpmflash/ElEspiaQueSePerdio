@@ -19,6 +19,7 @@ public class SpyWindow extends JFrame{
 	private String lugar;
 	private int spyPlayer = 0;
 	private int startPlayer = 0;
+	private static final long serialVersionUID = 42L;
 	
 	public SpyWindow() {
 		// ** Nuestra ventana:
@@ -41,7 +42,7 @@ public class SpyWindow extends JFrame{
 		JPanel centerPanel = new JPanel();
 		getContentPane().add(centerPanel, BorderLayout.CENTER);
 		
-		JLabel lblNumPersonas = new JLabel("\u00BFCuantas personas vais a jugar?");
+		JLabel lblNumPersonas = new JLabel("¿Cuantas personas vais a jugar?");
 		centerPanel.add(lblNumPersonas);
 		
 		jTFNumPersonas = new JTextField();

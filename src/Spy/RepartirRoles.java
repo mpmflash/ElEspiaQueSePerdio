@@ -20,11 +20,7 @@ import javax.swing.BoxLayout;
 
 public class RepartirRoles extends JFrame implements KeyListener{
 	
-	// Constructor vacío
-	/*public RepartirRoles() {
-		
-	}*/
-	
+	//Atributos de la clase
 	// Panel en el que colocaremos todos los demás JPanels:
 	private JPanel pnlPpal;
 	
@@ -77,6 +73,10 @@ public class RepartirRoles extends JFrame implements KeyListener{
 	private JLabel lStartJugador;
 	private int startJugador = 0;
 	
+	// Constructor vacío
+	public RepartirRoles() {
+		
+	}
 	
 	// Constructor de uso
 	public RepartirRoles(int numJugadores, String lugar, int espia, ArrayList<String> lugarList, int startPlayer) {
@@ -380,6 +380,7 @@ public class RepartirRoles extends JFrame implements KeyListener{
 			}
 			if(mins == nJugadores-1) {
 				// Ponerle color rojo al JLabel
+				lTime.setForeground(Color.red);
 			}
 			reprintCronoPanel();
 			//System.out.println(mins+":"+secs);
