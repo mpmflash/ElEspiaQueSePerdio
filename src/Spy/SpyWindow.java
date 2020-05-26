@@ -11,6 +11,7 @@ import java.util.Random;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 
 public class SpyWindow extends JFrame{
 	private JTextField jTFNumPersonas;
@@ -19,6 +20,9 @@ public class SpyWindow extends JFrame{
 	private String lugar;
 	private int spyPlayer = 0;
 	private int startPlayer = 0;
+	private JCheckBox cBAll;
+	private JCheckBox cBCrono;
+	private int timeCrono;
 	private static final long serialVersionUID = 42L;
 	
 	public SpyWindow() {
@@ -67,6 +71,10 @@ public class SpyWindow extends JFrame{
 				rr.setVisible(true);
 			}
 		});
+		
+		JLabel lAll = new JLabel("All");
+		
+		
 	}
 	
 	/*
