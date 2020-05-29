@@ -70,16 +70,82 @@ public class RepartirRoles extends JFrame implements KeyListener{
 	private Timer timing;
 	private int secs = 0;
 	private int mins = 0;
+	private int tPartida;
 	private JLabel lStartJugador;
 	private int startJugador = 0;
 	
-	// Constructor vacío
-	public RepartirRoles() {
+	// Constructor vacío para partida troll
+	public RepartirRoles(int numJugadores, ArrayList<String> lugarList, int startPlayer, int tiempoCrono) {
+		// Empezando partida Troll
+		// ** Nuestra ventana:
+		this.setTitle("EL ESPÍA (Juego en marcha)");
+		//this.setDefaultCloseOperation(EXIT_ON_CLOSE); // Cuando cerramos con la X, el programa sigue en ejecución, con esta línea lo paramos
+		this.setSize(550,275); //Tamaño de la ventana
+		this.setLocationRelativeTo(null); // Esto hace que se centre la ventana
+		
+		// Inicializamos los atributos que se nos pasan al crear la clase:
+		nJugadores = numJugadores;
+		jugador = 1;
+		lugares = new ArrayList<String>();
+		lugares = lugarList;
+		startJugador = startPlayer;
+		spy = 1;
+		loc = "Troll";
+		// Tiempo de partida:
+		// Si el tiempo crono de la clase SpyWindow es 0, significa que el usuario no ha especificado tiempo, por lo tanto, se usará el tiempo por defecto (tiempo por defecto = nº jugadores).
+		if(tiempoCrono != 0) {
+			tPartida = tiempoCrono;
+		} else {
+			tPartida = nJugadores;
+		}
+		
+		// Objetos de la ventana:
+		// Panel en la parte superior:
+		pnlPpal = new JPanel();
+		this.setContentPane(pnlPpal);
+
+		pnlNorth1 = new JPanel();
+		pnlPpal.add(pnlNorth1, BorderLayout.NORTH);
+		
+		JLabel lblStartPlay1 = new JLabel("A continuación, se asignarán los roles");
+		pnlNorth1.add(lblStartPlay1);
+		lblStartPlay1.setFont(fNormal);
+		
+		// Panel central en el que pondremos dos paneles más:
+		pnlCenter1 = new JPanel();
+		pnlPpal.add(pnlCenter1, BorderLayout.CENTER);
+		pnlCenter1.setLayout(new BoxLayout(pnlCenter1, BoxLayout.Y_AXIS));
+		
+		pnlTop1 = new JPanel();
+		pnlCenter1.add(pnlTop1);
+		
+		JLabel lblStartPlay2 = new JLabel("a los diferentes jugadores.");
+		pnlTop1.add(lblStartPlay2);
+		lblStartPlay2.setFont(fNormal);
+		
+		pnlBottom1 = new JPanel();
+		pnlCenter1.add(pnlBottom1);
+		
+		JLabel lblAdvertisement1 = new JLabel("RECUERDA:");
+		pnlBottom1.add(lblAdvertisement1);
+		lblAdvertisement1.setFont(fNegrita);
+		
+		// Panel en la parte inferior:
+		pnlSouth1 = new JPanel();
+		pnlPpal.add(pnlSouth1, BorderLayout.SOUTH);
+		
+		JLabel lblAdvertisement2 = new JLabel("solo debes mirar la pantalla cuando sea tu turno");
+		pnlSouth1.add(lblAdvertisement2);
+		lblAdvertisement2.setFont(fNegrita);
+		System.err.println(spy);
+		
+		//KeyListener para apretar el espacio e ir pasando de pantalla (de roles para los distintos jugadores)
+		this.addKeyListener(this);
 		
 	}
 	
 	// Constructor de uso
-	public RepartirRoles(int numJugadores, String lugar, int espia, ArrayList<String> lugarList, int startPlayer) {
+	public RepartirRoles(int numJugadores, String lugar, int espia, ArrayList<String> lugarList, int startPlayer, int tiempoCrono) {
 		// ** Nuestra ventana:
 		this.setTitle("EL ESPÍA (Juego en marcha)");
 		//this.setDefaultCloseOperation(EXIT_ON_CLOSE); // Cuando cerramos con la X, el programa sigue en ejecución, con esta línea lo paramos
@@ -94,6 +160,13 @@ public class RepartirRoles extends JFrame implements KeyListener{
 		lugares = new ArrayList<String>();
 		lugares = lugarList;
 		startJugador = startPlayer;
+		// Tiempo de partida:
+		// Si el tiempo crono de la clase SpyWindow es 0, significa que el usuario no ha especificado tiempo, por lo tanto, se usará el tiempo por defecto (tiempo por defecto = nº jugadores).
+		if(tiempoCrono != 0) {
+			tPartida = tiempoCrono;
+		} else {
+			tPartida = nJugadores;
+		}
 		
 		// Objetos de la ventana:
 		// Panel en la parte superior:
@@ -227,6 +300,10 @@ public class RepartirRoles extends JFrame implements KeyListener{
 			//removeJPanel(pnlMasterScreen);
 			pnlPpal.repaint();
 			jugador += 1;
+			// Si la partida es troll, sumaremos 1 al dígito de control de Spy para que a todos les aparezca que son espías
+			if(loc.equalsIgnoreCase("Troll")) {
+				spy += 1;
+			}
 		}
 	}
 	
@@ -378,13 +455,13 @@ public class RepartirRoles extends JFrame implements KeyListener{
 			if(mins == 60) {
 				mins = 0;
 			}
-			if(mins == nJugadores-1) {
+			if(mins == tPartida-1) {
 				// Ponerle color rojo al JLabel
 				lTime.setForeground(Color.red);
 			}
 			reprintCronoPanel();
 			//System.out.println(mins+":"+secs);
-			if(mins == nJugadores) {
+			if(mins == tPartida) {
 				timing.stop();
 			}
 		}

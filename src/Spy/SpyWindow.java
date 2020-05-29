@@ -22,14 +22,15 @@ public class SpyWindow extends JFrame{
 	private int startPlayer = 0;
 	private JCheckBox cBAll;
 	private JCheckBox cBCrono;
-	private int timeCrono;
+	private JTextField tFCrono;
+	private int timeCrono = 0;
 	private static final long serialVersionUID = 42L;
 	
 	public SpyWindow() {
 		// ** Nuestra ventana:
 		this.setTitle("El Espía");
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE); // Cuando cerramos con la X, el programa sigue en ejecución, con esta línea lo paramos
-		this.setSize(240,130); //Tamaño de la ventana
+		this.setSize(260,150); //Tamaño de la ventana
 		this.setLocationRelativeTo(null); // Esto hace que se centre la ventana
 		
 		// Inicializamos la arrayList necesarias, de momento la de los lugares:
@@ -66,15 +67,39 @@ public class SpyWindow extends JFrame{
 				spyPlayer = numAleatorio(Integer.parseInt(jTFNumPersonas.getText()));
 				// Repartimos el jugador que empezará a jugar
 				startPlayer = numAleatorio(Integer.parseInt(jTFNumPersonas.getText()));
-				
-				RepartirRoles rr = new RepartirRoles(Integer.parseInt(jTFNumPersonas.getText()), lugar, spyPlayer, lugarList, startPlayer);
-				rr.setVisible(true);
+				if(cBCrono.isSelected()) {
+					timeCrono = Integer.parseInt( tFCrono.getText() );
+				}
+				if(cBAll.isSelected()) {
+					System.out.println("Partida troll");
+					RepartirRoles rrTrol = new RepartirRoles(Integer.parseInt(jTFNumPersonas.getText()), lugarList, startPlayer, timeCrono );
+					rrTrol.setVisible(true);
+				} else {
+					RepartirRoles rr = new RepartirRoles(Integer.parseInt(jTFNumPersonas.getText()), lugar, spyPlayer, lugarList, startPlayer, timeCrono);
+					rr.setVisible(true);
+				}
 			}
 		});
 		
+		// Creamos un nuevo panel para colocar las expansiones del juego
+		JPanel southPanel = new JPanel();
+		getContentPane().add(southPanel, BorderLayout.SOUTH);
+		
+		// Parte para escoger hacer una partida troll (todos son espías)
 		JLabel lAll = new JLabel("All");
+		southPanel.add(lAll);
+		cBAll = new JCheckBox();
+		southPanel.add(cBAll);
 		
-		
+		// Parte para elegir cuánto tiempo durará la partida
+		JLabel lChangeCrono = new JLabel("Cambiar tiempo");
+		southPanel.add(lChangeCrono);
+		cBCrono = new JCheckBox();
+		southPanel.add(cBCrono);
+		tFCrono = new JTextField();
+		tFCrono.setColumns(3);
+		tFCrono.setText("5");
+		southPanel.add(tFCrono);
 	}
 	
 	/*
